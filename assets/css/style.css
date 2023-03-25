@@ -1,0 +1,16 @@
+html { scroll-behavior: smooth;}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.navbar-custom{
+	background: rgb(48, 95, 122);
+}
+
+.footer {
+	padding: 1px;
+	background: rgb(48, 95, 122);
+}
+

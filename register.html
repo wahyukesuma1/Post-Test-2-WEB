@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>Register Form</header>
+        <form id="form">
+            <div class="field">
+                <div class="input-area">
+                    <input type="text" id="username" name="username" placeholder="Username">
+                    <i class="icon fas fa-envelope"></i>
+                    <i class="error error-icon fas fa-exclamation-circle"></i>
+                </div>
+                <div class="error error-txt">Email can't be blank</div>
+            </div>
+            <div class="field password">
+                <div class="input-area">
+                    <input type="password" id="password" name="password" placeholder="Password">
+                    <i class="icon fas fa-lock"></i>
+                    <i class="error error-icon fas fa-exclamation-circle"></i>
+                </div>
+                <div class="error error-txt">Password can't be blank</div>
+            </div>
+            <input type="submit" class="reg" id="reg" name="register" value="Login">
+        </form>
+    </div>
+    <script>
+        function encodeJSON($form) {
+            let data = $form.serializeArray();
+            const json = {};
+
+            $.each(data, function () {
+                json[this.name] = this.value || "";
+            });
+
+            return json;
+        }
+
+        $('#form').submit(function (e) { 
+            e.preventDefault();
+            let temp = [];
+            temp.push(encodeJSON($(this)));
+            localStorage.setItem("users", JSON.stringify(temp));
+            alert("Berhasil Registrasi");
+            window.location.href = "login.html";
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>Login</header>
+        <form id="form" method="POST">
+            <div class="field">
+                <div class="input-area">
+                    <input type="text" name="username" id="username" placeholder="Username">
+                    <i class="icon fas fa-envelope"></i>
+                    <i class="error error-icon fas fa-exclamation-circle"></i>
+                </div>
+                <div class="error error-txt">Email can't be blank</div>
+            </div>
+            <div class="field password">
+                <div class="input-area">
+                    <input type="password" name="password" id="password" placeholder="Password">
+                    <i class="icon fas fa-lock"></i>
+                    <i class="error error-icon fas fa-exclamation-circle"></i>
+                </div>
+                <div class="error error-txt">Password can't be blank</div>
+            </div>
+            <div class="pass-txt"><a href="#">Forgot password?</a></div>
+            <input type="submit" id="login" name="login" value="Login">
+        </form>
+        <div class="sign-txt">Not yet member? <a href="register.html">Sign up now</a></div>
+    </div>
+
+    <script>
+        $('#form').submit(function (e) { 
+            e.preventDefault();
+            let data = $(this).serializeArray();
+            const users = JSON.parse(localStorage.getItem("users"));
+
+            //Periksa apakah array users ada dan tidak kosong
+            if (users && users.length) {
+                // Melakukan perulangan pada array 
+                for (let i = 0; i < users.length; i++) {
+                    if (data[0]['value'] == users[i].username && data[1]['value'] == users[i].password) {
+                        localStorage.setItem("username-logged-in", users[i].username)
+                        window.location.href = "index.html";
+                        alert("Berhasil Login");
+                        return;
+                    }
+                }
+            }
+
+            alert("Masukkan email dan password dengan benar");
+        });
+    </script>
+</body>
+
+</html>
